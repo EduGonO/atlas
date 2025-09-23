@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --font-sans: 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at 20% -10%, rgba(124, 134, 255, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 0%, rgba(85, 235, 211, 0.12), transparent 60%),
+    radial-gradient(circle at 50% 75%, rgba(249, 168, 77, 0.12), transparent 60%),
+    #03040d;
+}
+
+::selection {
+  background: rgba(124, 134, 255, 0.45);
+  color: #f9fafc;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+
+  body {
+    @apply text-white antialiased;
+  }
+
+  main {
+    @apply relative;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply border border-white/10 bg-white/5 backdrop-blur-2xl;
+  }
+
+  .grid-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-radius: inherit;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 90%);
+  }
+}

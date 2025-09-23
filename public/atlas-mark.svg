@@ -1,0 +1,27 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="globe" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(88 64) scale(208)">
+      <stop offset="0" stop-color="#060713" />
+      <stop offset="1" stop-color="#101425" />
+    </radialGradient>
+    <linearGradient id="latitude" x1="32" y1="64" x2="224" y2="192" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7C86FF" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#55EBD3" stop-opacity="0.8" />
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="120" fill="url(#globe)" />
+  <rect x="8" y="8" width="240" height="240" rx="120" stroke="rgba(255,255,255,0.38)" stroke-width="4" />
+  <path
+    d="M68 88C86 56 122 36 160 36c56 0 100 42 104 96-38 14-78 20-120 18-40-2-78-12-112-28 0-12 10-26 36-34z"
+    fill="rgba(124,134,255,0.55)"
+  />
+  <path
+    d="M48 140c40 14 82 20 126 18 42-2 82-10 120-26-4 56-50 100-108 100-52 0-96-38-104-88-12-2-24-6-34-12z"
+    fill="rgba(85,235,211,0.45)"
+  />
+  <path
+    d="M128 76c-30 0-52 24-52 52 0 28 22 52 52 52 28 0 52-24 52-52 0-28-24-52-52-52zm0 12c22 0 40 18 40 40s-18 40-40 40-40-18-40-40 18-40 40-40z"
+    fill="url(#latitude)"
+    opacity="0.45"
+  />
+</svg>
