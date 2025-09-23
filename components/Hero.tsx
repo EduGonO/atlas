@@ -2,17 +2,17 @@ import Link from 'next/link';
 
 const highlights = [
   {
-    title: 'Name the Nation',
+    title: 'Type',
     description: 'Lightning-fast prompts challenge you to recall every country on Earth.',
     accent: 'from-accent/80 via-accent to-white/80'
   },
   {
-    title: 'Pinpoint on the Map',
+    title: 'Find',
     description: 'Tap precise borders on a handcrafted globe rendered for Multi-Touch.',
     accent: 'from-aurora/70 via-aurora to-white/80'
   },
   {
-    title: 'Master the Flags',
+    title: 'Flags',
     description: 'Memorize intricate patterns with immersive colors tuned for OLED.',
     accent: 'from-amber/70 via-amber to-white/80'
   }
