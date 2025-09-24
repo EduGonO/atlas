@@ -2,33 +2,44 @@ import Link from 'next/link';
 
 const highlights = [
   {
-    title: 'Type',
-    description: 'Lightning-fast prompts challenge you to recall every country on Earth.',
+    title: 'Lightning Recall',
+    description: 'Speed rounds sharpen your memory with beautifully legible typography tuned for focus.',
     accent: 'from-accent/80 via-accent to-white/80'
   },
   {
-    title: 'Find',
-    description: 'Tap precise borders on a handcrafted globe rendered for Multi-Touch.',
+    title: 'Immersive Touch',
+    description: 'Handcrafted Multi-Touch hit zones glide across the sphere without pixelated seams.',
     accent: 'from-aurora/70 via-aurora to-white/80'
   },
   {
-    title: 'Flags',
-    description: 'Memorize intricate patterns with immersive colors tuned for OLED.',
+    title: 'Sonic Atmosphere',
+    description: 'Spatial soundscapes swell as you travel, matching every discovery with a score.',
     accent: 'from-amber/70 via-amber to-white/80'
+  }
+];
+
+const narratives = [
+  {
+    heading: 'Cartography built for clarity',
+    body: 'Every border is redrawn in high fidelity, then tinted with lush emerald hues so countries feel alive yet readable in motion.'
+  },
+  {
+    heading: 'A rhythm made to flow',
+    body: 'Progression, streaks, and challenges cascade as you scroll—each panel gently overlapping the next so the story never breaks.'
   }
 ];
 
 export default function Hero() {
   return (
-    <section id="overview" className="relative pt-36">
-      <div className="mx-auto flex max-w-6xl flex-col gap-16 lg:flex-row lg:items-center">
-        <div className="flex-1 space-y-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70 backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-aurora" />
-            Now accepting early access sign-ups
-          </div>
+    <section id="overview" className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center gap-16 px-4 pb-32 pt-32 sm:px-6 lg:px-8">
+      <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-white/70 backdrop-blur">
+        <span className="h-2 w-2 rounded-full bg-aurora" />
+        Now accepting early access sign-ups
+      </div>
+      <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)]">
+        <div className="space-y-10">
           <div className="space-y-6">
-            <h1 className="max-w-2xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
+            <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
               A world-class geography challenge designed for the iPhone.
             </h1>
             <p className="max-w-xl text-lg text-white/70">
@@ -46,7 +57,7 @@ export default function Hero() {
             </Link>
             <Link
               href="#download"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-base text-white/80 transition hover:border-white/40 hover:text-white"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-base text-white/80 backdrop-blur transition hover:border-white/40 hover:text-white"
             >
               Watch the trailer
               <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden>
@@ -55,47 +66,54 @@ export default function Hero() {
             </Link>
           </div>
         </div>
-        <div className="relative flex flex-1 justify-end">
-          <div className="relative w-full max-w-md">
-            <div className="relative overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-white/10 p-6 shadow-card">
-              <div className="relative rounded-[28px] border border-white/10 bg-surface/90 p-6 shadow-inner">
-                <div className="grid grid-cols-2 gap-4">
-                  {highlights.map((highlight) => (
-                    <div
-                      key={highlight.title}
-                      className="group relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.03] p-4 transition hover:-translate-y-1 hover:border-white/15"
-                    >
-                      <div className={`absolute inset-0 opacity-60 blur-2xl transition duration-500 group-hover:opacity-90 bg-gradient-to-br ${highlight.accent}`} />
-                      <div className="relative space-y-2">
-                        <div className="text-sm font-semibold text-white/90">{highlight.title}</div>
-                        <p className="text-xs leading-relaxed text-white/60">{highlight.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 space-y-3 rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6">
-                  <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/50">
-                    <span>Daily streak</span>
-                    <span>143 days</span>
-                  </div>
-                  <div className="relative h-2 rounded-full bg-white/10">
-                    <div className="absolute inset-y-0 left-0 w-2/3 rounded-full bg-gradient-to-r from-accent to-aurora" />
-                  </div>
-                  <div className="flex items-center justify-between text-sm text-white/80">
-                    <span>World mastery</span>
-                    <span>87%</span>
-                  </div>
-                </div>
-              </div>
+        <div className="space-y-6 rounded-[40px] border border-white/10 bg-white/[0.08] p-8 text-white/70 shadow-[0_40px_120px_-50px_rgba(5,11,24,0.9)] backdrop-blur">
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-[0.4em] text-white/40">Immersion</p>
+            <h2 className="text-2xl font-semibold text-white">Orbit the planet without ever leaving the page.</h2>
+          </div>
+          <p className="text-sm leading-relaxed">
+            The hero globe anchors the entire site. Scroll and the narrative glides around it, revealing modes, challenges, and
+            soundscapes like constellations in motion.
+          </p>
+          <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-white/50">
+            <span className="h-2 w-2 rounded-full bg-aurora" />
+            Live globe preview
+          </div>
+        </div>
+      </div>
+      <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-6 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-6 sm:overflow-visible">
+        {highlights.map((highlight) => (
+          <div
+            key={highlight.title}
+            className="group relative min-w-[240px] snap-center overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-5 transition duration-500 hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_30px_80px_rgba(18,32,59,0.45)] sm:min-w-0"
+          >
+            <div className={`absolute inset-0 opacity-60 blur-2xl transition duration-500 group-hover:opacity-90 bg-gradient-to-br ${highlight.accent}`} />
+            <div className="relative space-y-2">
+              <div className="text-sm font-semibold text-white/90">{highlight.title}</div>
+              <p className="text-xs leading-relaxed text-white/60">{highlight.description}</p>
             </div>
-            <div className="absolute -left-20 bottom-10 hidden max-w-[220px] -rotate-6 rounded-3xl border border-white/10 bg-white/[0.08] p-5 shadow-card backdrop-blur lg:block">
-              <p className="text-sm font-semibold text-white">Atlas Pro Tips</p>
-              <p className="mt-2 text-xs text-white/60">Discover hidden territories, compare stats with friends, and unlock beautiful wallpapers.</p>
-            </div>
-            <div className="absolute -right-12 -top-12 hidden w-32 rounded-full border border-white/20 bg-white/10 p-4 text-center text-[10px] uppercase tracking-[0.3em] text-white/60 backdrop-blur lg:block">
-              <div className="text-2xl font-semibold text-white">360°</div>
-              world view
-            </div>
+          </div>
+        ))}
+      </div>
+      <div className="grid gap-8 rounded-[44px] border border-white/10 bg-white/[0.06] p-10 text-white/75 shadow-[0_60px_160px_-60px_rgba(5,12,26,0.85)] backdrop-blur lg:grid-cols-2">
+        {narratives.map((item) => (
+          <div key={item.heading} className="space-y-3">
+            <h3 className="text-lg font-semibold text-white">{item.heading}</h3>
+            <p className="text-sm leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+        <div className="relative flex flex-col justify-between gap-6 rounded-[32px] border border-white/10 bg-gradient-to-br from-white/10 via-transparent to-white/5 p-8 text-sm text-white/70">
+          <div>
+            <p className="text-xs uppercase tracking-[0.35em] text-white/40">Scroll Story</p>
+            <p className="mt-3 text-base text-white">
+              Sections cascade beneath the globe with gentle parallax, creating a cinematic rhythm you can feel on desktop and
+              mobile alike.
+            </p>
+          </div>
+          <div className="flex gap-3 text-xs uppercase tracking-[0.3em] text-white/50">
+            <span className="rounded-full border border-white/20 px-3 py-1">Glide</span>
+            <span className="rounded-full border border-white/20 px-3 py-1">Discover</span>
+            <span className="rounded-full border border-white/20 px-3 py-1">Repeat</span>
           </div>
         </div>
       </div>
