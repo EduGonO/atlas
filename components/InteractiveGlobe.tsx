@@ -21,6 +21,8 @@ function latLngToVector3(lat: number, lng: number, radius: number) {
   return new THREE.Vector3(x, y, z);
 }
 
+    
+    
 function buildCountryLines(features: GeoJsonFeature[], radius: number) {
   const group = new THREE.Group();
 
@@ -66,6 +68,7 @@ function buildCountryLines(features: GeoJsonFeature[], radius: number) {
 
   return group;
 }
+
 
 let countriesPromise: Promise<GeoJsonFeature[]> | null = null;
 

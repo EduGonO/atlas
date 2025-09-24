@@ -14,19 +14,30 @@ const InteractiveGlobe = dynamic(() => import('./InteractiveGlobe'), {
 
 const highlights = [
   {
-    title: 'Type',
-    description: 'Lightning-fast prompts challenge you to recall every country on Earth.',
+    title: 'Lightning Recall',
+    description: 'Speed rounds sharpen your memory with beautifully legible typography tuned for focus.',
     accent: 'from-accent/80 via-accent to-white/80'
   },
   {
-    title: 'Find',
-    description: 'Tap precise borders on a handcrafted globe rendered for Multi-Touch.',
+    title: 'Immersive Touch',
+    description: 'Handcrafted Multi-Touch hit zones glide across the sphere without pixelated seams.',
     accent: 'from-aurora/70 via-aurora to-white/80'
   },
   {
-    title: 'Flags',
-    description: 'Memorize intricate patterns with immersive colors tuned for OLED.',
+    title: 'Sonic Atmosphere',
+    description: 'Spatial soundscapes swell as you travel, matching every discovery with a score.',
     accent: 'from-amber/70 via-amber to-white/80'
+  }
+];
+
+const narratives = [
+  {
+    heading: 'Cartography built for clarity',
+    body: 'Every border is redrawn in high fidelity, then tinted with lush emerald hues so countries feel alive yet readable in motion.'
+  },
+  {
+    heading: 'A rhythm made to flow',
+    body: 'Progression, streaks, and challenges cascade as you scroll—each panel gently overlapping the next so the story never breaks.'
   }
 ];
 
@@ -65,7 +76,7 @@ export default function Hero() {
             </Link>
             <Link
               href="#download"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-base text-white/80 transition hover:border-white/40 hover:text-white"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-base text-white/80 backdrop-blur transition hover:border-white/40 hover:text-white"
             >
               Watch the trailer
               <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden>
@@ -109,6 +120,28 @@ export default function Hero() {
                 Live
               </div>
             </div>
+          </div>
+        ))}
+      </div>
+      <div className="grid gap-8 rounded-[44px] border border-white/10 bg-white/[0.06] p-10 text-white/75 shadow-[0_60px_160px_-60px_rgba(5,12,26,0.85)] backdrop-blur lg:grid-cols-2">
+        {narratives.map((item) => (
+          <div key={item.heading} className="space-y-3">
+            <h3 className="text-lg font-semibold text-white">{item.heading}</h3>
+            <p className="text-sm leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+        <div className="relative flex flex-col justify-between gap-6 rounded-[32px] border border-white/10 bg-gradient-to-br from-white/10 via-transparent to-white/5 p-8 text-sm text-white/70">
+          <div>
+            <p className="text-xs uppercase tracking-[0.35em] text-white/40">Scroll Story</p>
+            <p className="mt-3 text-base text-white">
+              Sections cascade beneath the globe with gentle parallax, creating a cinematic rhythm you can feel on desktop and
+              mobile alike.
+            </p>
+          </div>
+          <div className="flex gap-3 text-xs uppercase tracking-[0.3em] text-white/50">
+            <span className="rounded-full border border-white/20 px-3 py-1">Glide</span>
+            <span className="rounded-full border border-white/20 px-3 py-1">Discover</span>
+            <span className="rounded-full border border-white/20 px-3 py-1">Repeat</span>
           </div>
         </div>
       </div>

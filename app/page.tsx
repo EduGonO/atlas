@@ -4,6 +4,7 @@ import ModeShowcase from '@/components/ModeShowcase';
 import ExperienceSection from '@/components/ExperienceSection';
 import DownloadSection from '@/components/DownloadSection';
 import Footer from '@/components/Footer';
+import GlobeStage from '@/components/GlobeStage';
 
 export default function Home() {
   return (
