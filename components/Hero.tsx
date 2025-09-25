@@ -1,54 +1,123 @@
 'use client';
 
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
+import { type CSSProperties, useEffect, useRef } from 'react';
 
-const InteractiveGlobe = dynamic(() => import('./InteractiveGlobe'), {
-  ssr: false,
-  loading: () => (
-    <div className="flex h-full w-full items-center justify-center">
-      <div className="h-12 w-12 animate-pulse rounded-full bg-white/10" />
-    </div>
-  )
-});
+type SpotlightStyle = CSSProperties & {
+  '--spotlight-x'?: string;
+  '--spotlight-y'?: string;
+};
 
 const highlights = [
   {
-    title: 'Type',
-    description: 'Lightning-fast prompts challenge you to recall every country on Earth.',
+    title: 'Lightning Recall',
+    description:
+      'Speed rounds sharpen your memory with beautifully legible typography tuned for focus across Retina and ProMotion displays.',
     accent: 'from-accent/80 via-accent to-white/80'
   },
   {
-    title: 'Find',
-    description: 'Tap precise borders on a handcrafted globe rendered for Multi-Touch.',
+    title: 'Immersive Touch',
+    description:
+      'Handcrafted multi-touch hit zones glide across the sphere without pixelated seams, so every swipe feels like liquid metal.',
     accent: 'from-aurora/70 via-aurora to-white/80'
   },
   {
-    title: 'Flags',
-    description: 'Memorize intricate patterns with immersive colors tuned for OLED.',
+    title: 'Sonic Atmosphere',
+    description:
+      'Spatial soundscapes swell as you travel, matching every discovery with an orchestral score tuned for AirPods and beyond.',
     accent: 'from-amber/70 via-amber to-white/80'
   }
 ];
 
+const narratives = [
+  {
+    heading: 'Cartography for clarity',
+    body: 'Every border is redrawn in high fidelity, then tinted with lush emerald hues so countries feel alive yet perfectly legible.'
+  },
+  {
+    heading: 'A rhythm designed to flow',
+    body: 'Progression, streaks, and challenges cascade as you scroll—each panel gently overlapping the next so the story never breaks.'
+  }
+];
+
+const timeline = [
+  {
+    step: '01',
+    title: 'Orbit in real time',
+    copy: 'Pan, tilt, and spin with buttery-smooth inertia. Adaptive damping keeps motion stable even on smaller devices.'
+  },
+  {
+    step: '02',
+    title: 'Discover the unexpected',
+    copy: 'Micro-animations illuminate capitals, coastlines, and achievements the moment you unlock them.'
+  },
+  {
+    step: '03',
+    title: 'Share your mastery',
+    copy: 'One tap exports gorgeous session summaries ready for Messages, social, or your personal study journal.'
+  }
+];
+
+const metrics = [
+  { label: 'Average daily session', value: '6m 12s' },
+  { label: 'Countries rendered', value: '195' },
+  { label: 'Star particles', value: '60k adaptive' },
+  { label: 'Supported devices', value: 'iPhone + iPad + Mac' }
+];
+
 export default function Hero() {
+  const highlightRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const nodes = highlightRefs.current;
+    const cleanups = nodes.map((node) => {
+      if (!node) {
+        return () => {};
+      }
+
+      const setSpotlight = (event: PointerEvent) => {
+        const rect = node.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width) * 100;
+        const y = ((event.clientY - rect.top) / rect.height) * 100;
+        node.style.setProperty('--spotlight-x', `${x}%`);
+        node.style.setProperty('--spotlight-y', `${y}%`);
+      };
+
+      const resetSpotlight = () => {
+        node.style.setProperty('--spotlight-x', '50%');
+        node.style.setProperty('--spotlight-y', '50%');
+      };
+
+      node.addEventListener('pointermove', setSpotlight);
+      node.addEventListener('pointerleave', resetSpotlight);
+      node.addEventListener('pointerup', resetSpotlight);
+
+      return () => {
+        node.removeEventListener('pointermove', setSpotlight);
+        node.removeEventListener('pointerleave', resetSpotlight);
+        node.removeEventListener('pointerup', resetSpotlight);
+      };
+    });
+
+    return () => {
+      cleanups.forEach((cleanup) => cleanup());
+    };
+  }, []);
+
   return (
-    <section id="overview" className="relative isolate overflow-hidden pb-24 pt-28 sm:pb-32 sm:pt-32 lg:pb-40 lg:pt-44">
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(11,27,66,0.85)_0%,rgba(6,16,38,0.82)_42%,rgba(2,9,24,0.94)_78%,rgba(0,5,16,0.92)_100%)]" />
-        <div className="absolute inset-x-0 top-8 h-72 bg-gradient-to-b from-white/10 via-transparent to-transparent blur-[160px]" />
-        <div className="absolute -left-24 top-1/4 h-72 w-72 rounded-full bg-aurora/25 blur-[140px]" />
-        <div className="absolute -right-12 top-20 h-80 w-80 rounded-full bg-accent/25 blur-[160px]" />
-        <div className="absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-[#06112d]/80 via-transparent to-transparent blur-[180px]" />
-      </div>
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-16 px-4 sm:px-6 lg:grid-cols-[minmax(0,460px)_minmax(0,1fr)] lg:items-start lg:gap-20">
-        <div className="flex flex-col gap-10">
-          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70 backdrop-blur">
+    <section
+      id="overview"
+      className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center gap-16 px-4 pb-28 pt-28 sm:px-6 lg:px-8"
+    >
+      <div className="flex flex-col gap-10 lg:flex-row lg:items-end">
+        <div className="space-y-8 lg:max-w-2xl">
+          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-white/70 backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-aurora" />
-            Now accepting early access sign-ups
+            Early access now open
           </div>
           <div className="space-y-6">
             <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
-              A world-class geography challenge designed for the iPhone.
+              Command the world’s knowledge from a living, responsive sphere.
             </h1>
             <p className="max-w-xl text-lg text-white/70">
               Atlas blends artistry and precision so you can effortlessly explore every border, capital, and flag. Learn faster,
@@ -65,7 +134,7 @@ export default function Hero() {
             </Link>
             <Link
               href="#download"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-base text-white/80 transition hover:border-white/40 hover:text-white"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-base text-white/80 backdrop-blur transition hover:border-white/40 hover:text-white"
             >
               Watch the trailer
               <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden>
@@ -73,43 +142,98 @@ export default function Hero() {
               </svg>
             </Link>
           </div>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {highlights.map((highlight) => (
-              <div
-                key={highlight.title}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-5 transition duration-500 hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_30px_80px_rgba(18,32,59,0.45)]"
-              >
-                <div className={`absolute inset-0 opacity-60 blur-2xl transition duration-500 group-hover:opacity-90 bg-gradient-to-br ${highlight.accent}`} />
-                <div className="relative space-y-2">
-                  <div className="text-sm font-semibold text-white/90">{highlight.title}</div>
-                  <p className="text-xs leading-relaxed text-white/60">{highlight.description}</p>
-                </div>
+          <dl className="grid grid-cols-2 gap-4 text-sm text-white/60 sm:max-w-lg">
+            {metrics.map((metric) => (
+              <div key={metric.label} className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 backdrop-blur">
+                <dt className="text-xs uppercase tracking-[0.35em] text-white/45">{metric.label}</dt>
+                <dd className="mt-2 text-lg font-semibold text-white">{metric.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div className="relative isolate flex w-full max-w-sm flex-col gap-6 overflow-hidden rounded-[36px] border border-white/10 bg-white/[0.07] p-8 text-sm text-white/75 shadow-[0_40px_160px_-70px_rgba(5,11,24,0.95)] backdrop-blur">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.16),transparent_55%)]" />
+          <div>
+            <p className="text-xs uppercase tracking-[0.4em] text-white/40">Live Globe Feed</p>
+            <p className="mt-3 text-base text-white">
+              The hero globe anchors the entire site. Scroll and the narrative glides around it, revealing modes, challenges, and
+              soundscapes like constellations in motion.
+            </p>
+          </div>
+          <div className="flex flex-col gap-4 text-xs uppercase tracking-[0.3em] text-white/55">
+            <span className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-3 py-2">
+              <span className="h-2 w-2 rounded-full bg-aurora" />
+              Live preview synched
+            </span>
+            <span className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-3 py-2">
+              <span className="h-2 w-2 rounded-full bg-accent" />
+              Motion aware physics
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-6 scrollbar-hidden sm:mx-0 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-6 sm:overflow-visible">
+        {highlights.map((highlight, index) => (
+          <div
+            key={highlight.title}
+            ref={(el) => {
+              highlightRefs.current[index] = el;
+            }}
+            style={{ '--spotlight-x': '50%', '--spotlight-y': '50%' } as SpotlightStyle}
+            className="group relative min-w-[240px] snap-center overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 transition duration-500 hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_30px_80px_rgba(18,32,59,0.45)] sm:min-w-0"
+          >
+            <span
+              className={`pointer-events-none absolute inset-0 opacity-60 blur-2xl transition duration-500 group-hover:opacity-90 bg-gradient-to-br ${highlight.accent}`}
+            />
+            <span
+              className="pointer-events-none absolute inset-[-30%] opacity-0 transition duration-700 group-hover:opacity-100"
+              style={{
+                background: 'radial-gradient(circle at var(--spotlight-x) var(--spotlight-y), rgba(255,255,255,0.28), transparent 65%)'
+              }}
+            />
+            <div className="relative space-y-3">
+              <div className="text-sm font-semibold text-white/90">{highlight.title}</div>
+              <p className="text-xs leading-relaxed text-white/65">{highlight.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="grid gap-10 rounded-[44px] border border-white/10 bg-white/[0.06] p-10 text-white/75 shadow-[0_60px_160px_-60px_rgba(5,12,26,0.85)] backdrop-blur lg:grid-cols-[1.2fr_1fr]">
+        <div className="space-y-8">
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-[0.4em] text-white/40">Design Ethos</p>
+            <h2 className="text-2xl font-semibold text-white md:text-3xl">Crafted like an Apple flagship experience.</h2>
+            <p className="text-sm leading-relaxed">
+              Sections cascade beneath the globe with gentle parallax, creating a cinematic rhythm you can feel on desktop and mobile alike.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {narratives.map((item) => (
+              <div key={item.heading} className="rounded-3xl border border-white/10 bg-white/[0.05] p-6">
+                <h3 className="text-lg font-semibold text-white">{item.heading}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/70">{item.body}</p>
               </div>
             ))}
           </div>
         </div>
-        <div className="relative flex justify-center lg:justify-end">
-          <div className="relative w-full max-w-[540px] lg:sticky lg:top-32">
-            <div className="absolute -inset-12 -z-10 rounded-[64px] bg-gradient-to-br from-aurora/10 via-transparent to-accent/20 blur-[180px]" />
-            <div className="relative aspect-square overflow-visible rounded-[48px] border border-white/10 bg-white/[0.08] p-6 shadow-[0_60px_180px_-40px_rgba(6,12,26,0.85)] backdrop-blur-xl">
-              <div className="pointer-events-none absolute inset-px rounded-[42px] border border-white/5" />
-              <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-[42px] bg-gradient-to-br from-[#04122b]/92 via-[#030b1d]/88 to-[#02060f]/92">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(124,134,255,0.22),transparent_60%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(85,235,211,0.2),transparent_65%)]" />
-                <InteractiveGlobe />
-              </div>
-            </div>
-            <div className="mt-6 flex items-center justify-between rounded-3xl border border-white/10 bg-white/[0.08] px-6 py-5 text-sm text-white/70 shadow-[0_30px_90px_-40px_rgba(7,15,32,0.8)] backdrop-blur">
-              <div>
-                <div className="font-semibold text-white">Atlas</div>
-                <div className="text-xs text-white/50">10 countries from all continents</div>
-              </div>
-              <div className="flex items-center gap-2 rounded-full bg-white/[0.12] px-3 py-1 text-xs text-white/70">
-                <span className="h-2 w-2 rounded-full bg-aurora" />
-                Live
-              </div>
-            </div>
+        <div className="relative flex flex-col justify-between gap-6 rounded-[32px] border border-white/10 bg-gradient-to-br from-white/10 via-transparent to-white/5 p-8 text-sm text-white/70">
+          <div className="space-y-5">
+            <p className="text-xs uppercase tracking-[0.35em] text-white/40">Scroll Story</p>
+            <p className="text-base text-white">
+              Follow the arc from first touch to global mastery. Each beat unlocks another layer of Atlas without ever losing sight of the cosmos behind it.
+            </p>
           </div>
+          <ol className="space-y-4 text-white/60">
+            {timeline.map((item) => (
+              <li key={item.step} className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/45">{item.step}</span>
+                <div className="space-y-1">
+                  <p className="text-sm font-semibold text-white">{item.title}</p>
+                  <p className="text-xs leading-relaxed">{item.copy}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>
