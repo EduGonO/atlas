@@ -13,7 +13,7 @@ const InteractiveGlobe = dynamic(() => import('./InteractiveGlobe'), {
 
 export default function GlobeStage() {
   return (
-    <div className="fixed inset-0 z-0 flex items-center justify-center">
+    <div className="pointer-events-none fixed inset-0 z-0 flex items-center justify-center">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-[-40%] h-[720px] bg-gradient-to-b from-white/10 via-transparent to-transparent blur-[220px]" />
         <div className="absolute inset-x-0 bottom-[-30%] h-[560px] bg-gradient-to-t from-[#031027]/80 via-transparent to-transparent blur-[220px]" />
