@@ -308,7 +308,7 @@ export default function InteractiveGlobe({ className }: InteractiveGlobeProps = 
     const globeGroup = new THREE.Group();
     scene.add(globeGroup);
 
-    const earthGeometry = new THREE.SphereGeometry(GLOBE_RADIUS, 200, 200);
+    const earthGeometry = new THREE.SphereGeometry(GLOBE_RADIUS, 128, 128);
     const earthMaterial = new THREE.MeshStandardMaterial({
       color: new THREE.Color('#08346a'),
       roughness: 0.5,
@@ -332,7 +332,7 @@ export default function InteractiveGlobe({ className }: InteractiveGlobeProps = 
     const earthMesh = new THREE.Mesh(earthGeometry, earthMaterial);
     globeGroup.add(earthMesh);
 
-    const atmosphereGeometry = new THREE.SphereGeometry(ATMOSPHERE_RADIUS, 160, 160);
+    const atmosphereGeometry = new THREE.SphereGeometry(ATMOSPHERE_RADIUS, 96, 96);
     const atmosphereMaterial = new THREE.MeshBasicMaterial({
       color: new THREE.Color('#6bb8ff'),
       transparent: true,
@@ -343,8 +343,8 @@ export default function InteractiveGlobe({ className }: InteractiveGlobeProps = 
     globeGroup.add(atmosphere);
 
     const { width: initialWidth, height: initialHeight } = container.getBoundingClientRect();
-    const estimatedArea = Math.max(initialWidth * initialHeight, 560 * 560);
-    const starCount = Math.round(THREE.MathUtils.clamp(estimatedArea / 180, 900, 2200));
+    const estimatedArea = Math.max(initialWidth * initialHeight, 480 * 480);
+    const starCount = Math.round(THREE.MathUtils.clamp(estimatedArea / 260, 420, 1200));
     const starPositions = new Float32Array(starCount * 3);
     const starColors = new Float32Array(starCount * 3);
 
