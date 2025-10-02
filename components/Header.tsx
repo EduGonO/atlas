@@ -1,16 +1,16 @@
 import Link from 'next/link';
 
 const navItems = [
+  { href: '#overview', label: 'Overview' },
   { href: '#modes', label: 'Game Modes' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#download', label: 'Download' }
+  { href: '#waitlist', label: 'Updates' }
 ];
 
 export default function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-6">
       <div className="glass flex w-full max-w-6xl items-center justify-between rounded-full px-5 py-3 shadow-glow transition-all duration-500 ease-out hover:shadow-[0_0_160px_rgba(124,134,255,0.24)]">
-        <Link href="#" className="flex items-center gap-2 text-sm font-semibold tracking-tight">
+        <Link href="#overview" className="flex items-center gap-2 text-sm font-semibold tracking-tight text-white">
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-accent via-white/40 to-aurora text-surface shadow-inner">
             <svg viewBox="0 0 32 32" fill="none" aria-hidden className="h-5 w-5 text-surface">
               <defs>
@@ -38,7 +38,7 @@ export default function Header() {
         </nav>
         <div className="flex items-center gap-3">
           <Link
-            href="#download"
+            href="#waitlist"
             className="hidden rounded-full border border-white/20 px-4 py-2 text-sm text-white/70 transition hover:border-white/40 hover:text-white md:inline-flex"
           >
             Join the waitlist
