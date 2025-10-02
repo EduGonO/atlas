@@ -28,7 +28,7 @@ export default function ExperienceSection() {
       <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-[3fr_2fr]">
         <div className="space-y-10">
           <div className="space-y-4">
-            <p className="text-sm uppercase tracking-[0.4em] text-white/40">Experience</p>
+            <p className="text-sm uppercase tracking-[0.24em] text-white/40">Experience</p>
             <h2 className="max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
               Every interaction is tuned for delight, clarity, and speed.
             </h2>
@@ -52,14 +52,14 @@ export default function ExperienceSection() {
             <div className="absolute inset-0 bg-grid-faint opacity-40" />
             <div className="relative space-y-8">
               <div className="space-y-3">
-                <h3 className="text-sm uppercase tracking-[0.5em] text-white/40">Your Atlas Journey</h3>
+                <h3 className="text-sm uppercase tracking-[0.28em] text-white/40">Your Atlas Journey</h3>
                 <p className="text-2xl font-semibold text-white">Geography fluency at a glance.</p>
               </div>
               <div className="grid gap-4">
                 {stats.map((stat) => (
                   <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/[0.05] p-4">
                     <div className="text-3xl font-semibold text-white">{stat.value}</div>
-                    <div className="text-xs uppercase tracking-[0.3em] text-white/50">{stat.label}</div>
+                    <div className="text-xs uppercase tracking-[0.18em] text-white/50">{stat.label}</div>
                   </div>
                 ))}
               </div>
