@@ -2,23 +2,23 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Atlas — World map mastery on iOS',
+  title: 'Atlas — Learn the World',
   description:
     'Atlas is the beautifully crafted world map quiz for iPhone where you name countries, pinpoint their locations, and match every flag.',
   icons: {
     icon: '/atlas-mark.svg'
   },
   openGraph: {
-    title: 'Atlas — World map mastery on iOS',
+    title: 'Atlas -- Learn the World',
     description:
-      'Name every country, tap the right borders at speed, and conquer the ultimate flag challenge with Atlas for iPhone.',
+      'Type every country, tap the right borders, name every flag, with Atlas for iPhone.',
     url: 'https://atlas.app',
     siteName: 'Atlas',
     type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Atlas — World map mastery on iOS',
+    title: 'Atlas -- Learn the World',
     description:
       'Test your geography superpowers with a premium map quiz for iPhone — countries, locations, and flags in one place.'
   }
