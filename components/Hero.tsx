@@ -30,7 +30,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-grid-faint bg-[length:140px_140px] opacity-25" />
       </div>
       <div className="space-y-7">
-        <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-[11px] uppercase tracking-[0.48em] text-white/70">
+        <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-[11px] uppercase tracking-[0.28em] text-white/70">
           Atlas
         </span>
         <div className="space-y-5">
