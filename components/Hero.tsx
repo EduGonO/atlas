@@ -59,6 +59,8 @@ export default function Hero() {
           </Link>
         </div>
       </div>
+      
+      {/*
       <div className="mt-10 grid gap-4 sm:grid-cols-3">
         {essentials.map((item) => (
           <div
@@ -73,6 +75,8 @@ export default function Hero() {
           </div>
         ))}
       </div>
+      */}
+      
     </section>
   );
 }
